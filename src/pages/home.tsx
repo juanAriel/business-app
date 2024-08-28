@@ -4,16 +4,7 @@ import React from "react";
 const Home = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.textContainer}>
-        <Text style={styles.textHome}> welcome </Text>
-        <Text style={styles.textHome}> to </Text>
-        <Text style={styles.textHome}> Business </Text>
-      </View>
-      <ImageBackground
-        imageStyle={{ borderRadius: 250 }}
-        style={styles.imageApp}
-        source={require("../../assets/images/welcome.png")}
-      />
+      <Text>hi</Text>
     </View>
   );
 };

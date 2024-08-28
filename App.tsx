@@ -1,9 +1,40 @@
-import Home from "./src/pages";
+import { NavigationContainer } from "@react-navigation/native";
+import React, { useEffect } from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import Welcome from "./src/pages/welcome";
+import Home from "./src/pages/home";
+
+const Stack = createStackNavigator();
+
+const WelcomeScreen = ({ navigation }) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigation.replace("Home");
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [navigation]);
+  return <Welcome />;
+};
+
+const HomeScreen = () => {
+  return <Home />;
+};
 
 export default function App() {
   return (
-    <>
-      <Home />
-    </>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Splash"
+          component={WelcomeScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }

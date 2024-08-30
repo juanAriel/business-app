@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Icon } from "react-native-vector-icons";
+import Icon from "react-native-vector-icons/FontAwesome";
 interface IconComponentProps {
   name: string;
   size?: number;
@@ -19,7 +19,10 @@ const IconComponent: React.FC<IconComponentProps> = ({
 };
 
 const styles = StyleSheet.create({
-  icon: {},
+  icon: {
+    color: "#000",
+    fontSize: 40,
+  },
 });
 
 export default IconComponent;

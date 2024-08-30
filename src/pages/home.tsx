@@ -1,9 +1,11 @@
 import { StyleSheet, View, Text, ImageBackground } from "react-native";
 import React from "react";
+import SearchComponent from "../components/Molecules/SearchComponent";
 
 const Home = () => {
   return (
     <View style={styles.container}>
+      <SearchComponent />
       <Text>hi</Text>
     </View>
   );

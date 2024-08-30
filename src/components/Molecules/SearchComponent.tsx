@@ -7,7 +7,7 @@ const SearchComponent: React.FC = () => {
   const [searchText, setSearchText] = useState<string>("");
 
   const search = useCallback(() => {
-    alert("hello word");
+    alert("click on btn search");
   }, []);
 
   const TextSearch = useCallback((text: string) => {
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     width: "90%",
     borderWidth: 1,
     borderColor: "#000",
+    marginBottom: 20,
   },
   input: {
     marginLeft: 10,

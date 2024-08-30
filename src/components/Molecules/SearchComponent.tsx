@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import TextInputComponent from "../Atoms/TextInput";
 import ButtonComponent from "../Atoms/Button";
 
 const SearchComponent: React.FC = () => {
-  const search = () => {
-    alert("Hola mundo");
-  };
+  const [searchText, setSearchText] = useState<string>("");
 
-  const TextSearch = () => {};
+  const search = useCallback(() => {
+    alert("hello word");
+  }, []);
+
+  const TextSearch = useCallback((text: string) => {
+    setSearchText(text);
+  }, []);
 
   return (
     <View style={styles.container}>
       <TextInputComponent
-        value=""
+        value={searchText}
         onChangeText={TextSearch}
-        placeholder="Type something..."
+        placeholder="Search here..."
+        style={styles.input}
       />
       <ButtonComponent onPress={search} iconName="search" />
     </View>
@@ -31,6 +36,10 @@ const styles = StyleSheet.create({
     width: "90%",
     borderWidth: 1,
     borderColor: "#000",
+  },
+  input: {
+    marginLeft: 10,
+    marginRight: -10,
   },
 });
 

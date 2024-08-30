@@ -12,10 +12,11 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
   value,
   onChangeText,
   placeholder,
+  style
 }) => {
   return (
     <Input
-      style={styles.input}
+      style={[styles.input, style]}
       value={value}
       onChangeText={onChangeText}
       placeholder={placeholder}

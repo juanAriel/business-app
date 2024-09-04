@@ -1,28 +1,27 @@
-import React, { useCallback, useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React from "react";
+import { View, StyleSheet } from "react-native";
 import TextInputComponent from "../Atoms/TextInput";
 import ButtonComponent from "../Atoms/Button";
 
-const SearchComponent: React.FC = () => {
-  const [searchText, setSearchText] = useState<string>("");
-
-  const search = useCallback(() => {
-    alert("click on btn search");
-  }, []);
-
-  const TextSearch = useCallback((text: string) => {
-    setSearchText(text);
-  }, []);
-
+interface SearchComponentProps {
+  searchText: string;
+  onSearchText: (text: string) => void;
+  onSearch: () => void;
+}
+const SearchComponent: React.FC<SearchComponentProps> = ({
+  searchText,
+  onSearchText,
+  onSearch,
+}) => {
   return (
     <View style={styles.container}>
       <TextInputComponent
         value={searchText}
-        onChangeText={TextSearch}
+        onChangeText={onSearchText}
         placeholder="Search here..."
         style={styles.input}
       />
-      <ButtonComponent onPress={search} iconName="search" />
+      <ButtonComponent onPress={onSearch} iconName="search" />
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import LabelComponent from "../Atoms/Label";
 import { StyleSheet, View } from "react-native";
 import ButtonComponent from "../Atoms/Button";
@@ -6,17 +6,14 @@ import ButtonComponent from "../Atoms/Button";
 interface TitleProps {
   text: string;
   style?: object;
+  onPress: () => void;
 }
 
-const Title: React.FC<TitleProps> = ({ text }) => {
-  const viewDetails = useCallback(() => {
-    alert("click in view more");
-  }, []);
-
+const Title: React.FC<TitleProps> = ({ text, onPress }) => {
   return (
     <View style={styles.containerTitle}>
       <LabelComponent text={text} style={styles.title}></LabelComponent>
-      <ButtonComponent onPress={viewDetails} iconName="eye" />
+      <ButtonComponent onPress={onPress} iconName="eye" />
     </View>
   );
 };

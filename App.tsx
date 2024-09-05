@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Welcome from "./src/pages/welcome";
 import Home from "./src/pages/home";
+import DetailsScreen from "./src/pages/Details";
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,7 @@ export default function App() {
           component={HomeScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

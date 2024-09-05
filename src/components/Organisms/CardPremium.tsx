@@ -6,12 +6,17 @@ import { StyleSheet, View } from "react-native";
 interface CardPremiumProps {
   title: string;
   description: string;
+  onPress: () => void;
 }
 
-const CardPremium: React.FC<CardPremiumProps> = ({ title, description }) => {
+const CardPremium: React.FC<CardPremiumProps> = ({
+  title,
+  description,
+  onPress,
+}) => {
   return (
     <View style={styles.mainContainer}>
-      <Title text={title} />
+      <Title text={title} onPress={onPress} />
       <View style={styles.container}>
         <LabelComponent style={styles.description} text={description} />
       </View>

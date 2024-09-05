@@ -4,6 +4,7 @@ import SearchComponent from "../components/Molecules/SearchComponent";
 import CardPremium from "../components/Organisms/CardPremium";
 import Card from "../components/Organisms/Card";
 import Select from "../components/Molecules/Select";
+import { useNavigation } from "@react-navigation/native";
 
 const cards = [
   {
@@ -33,6 +34,8 @@ const cards = [
 ];
 
 const Home = () => {
+  const navigation = useNavigation<any>();
+
   const [searchText, setSearchText] = useState<string>("");
   const [sortOption, setSortOption] = useState<string>("");
 
@@ -47,6 +50,10 @@ const Home = () => {
   const filteredCards = cards.filter((card) =>
     card.title.toLowerCase().includes(searchText.toLowerCase())
   );
+
+  const viewDetails = () => {
+    navigation.navigate("Details");
+  };
 
   const sortedFilteredCards = [...filteredCards].sort((a, b) => {
     switch (sortOption) {
@@ -83,6 +90,7 @@ const Home = () => {
             key={card.id}
             title={card.title}
             description={card.description}
+            onPress={viewDetails}
           />
         ))
       ) : sortedFilteredCards.length > 0 ? (

@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     marginBottom: 5,
-    color: "#333",
+    color: "#000",
   },
 });
 

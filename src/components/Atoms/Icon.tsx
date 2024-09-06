@@ -20,8 +20,8 @@ const IconComponent: React.FC<IconComponentProps> = ({
 
 const styles = StyleSheet.create({
   icon: {
-    color: "#000",
     fontSize: 40,
+    margin: 5,
   },
 });
 

@@ -95,7 +95,7 @@ const Home = () => {
         ))
       ) : sortedFilteredCards.length > 0 ? (
         sortedFilteredCards.map((card) => (
-          <Card key={card.id} title={card.title} />
+          <Card key={card.id} title={card.title} onPress={viewDetails} />
         ))
       ) : (
         <Text>No results found</Text>

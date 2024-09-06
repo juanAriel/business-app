@@ -3,11 +3,12 @@ import { StyleSheet, View } from "react-native";
 import Title from "../Molecules/Title";
 interface CardProps {
   title: string;
+  onPress: () => void;
 }
-const Card: React.FC<CardProps> = ({ title }) => {
+const Card: React.FC<CardProps> = ({ title, onPress }) => {
   return (
     <View style={styles.mainContainer}>
-      <Title text={title} />
+      <Title text={title} onPress={onPress} />
     </View>
   );
 };

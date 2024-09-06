@@ -3,7 +3,7 @@ import { TextInput as Input, StyleSheet } from "react-native";
 
 interface TextInputComponentProps {
   value: string;
-  onChangeText: (text: string) => void;
+  onChangeText?: (text: string) => void;
   placeholder?: string;
   style?: object;
 }
@@ -12,7 +12,7 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
   value,
   onChangeText,
   placeholder,
-  style
+  style,
 }) => {
   return (
     <Input
@@ -20,13 +20,14 @@ const TextInputComponent: React.FC<TextInputComponentProps> = ({
       value={value}
       onChangeText={onChangeText}
       placeholder={placeholder}
+      multiline
     />
   );
 };
 
 const styles = StyleSheet.create({
   input: {
-    width: "85%",
+    width: "90%",
   },
 });
 

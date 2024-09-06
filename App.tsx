@@ -4,6 +4,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Welcome from "./src/pages/welcome";
 import Home from "./src/pages/home";
 import DetailsScreen from "./src/pages/Details";
+import LocationScreen from "./src/pages/Location";
+import AssessmentScreen from "./src/pages/Assessment";
 
 const Stack = createStackNavigator();
 
@@ -36,6 +38,8 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="Location" component={LocationScreen} />
+        <Stack.Screen name="Assessment" component={AssessmentScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

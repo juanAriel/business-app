@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import ButtonComponent from "../components/Atoms/Button";
 import TextInputComponent from "../components/Atoms/TextInput";
 import StarRating from "../components/Organisms/StartRating";
 import { useNavigation } from "@react-navigation/native";
+import LabelComponent from "../components/Atoms/Label";
 
 interface AssessmentProps {
   descriptionText: string;
 }
 const Assessment: React.FC<AssessmentProps> = ({ descriptionText }) => {
+  const [rating, setRating] = useState<number>(0);
   const navigation = useNavigation<any>();
+
   const send = () => {
     navigation.navigate("Home");
   };
   return (
     <View style={styles.container}>
       <View style={styles.containerText}>
-        <Text>details here</Text>
+        <LabelComponent text="Details here" style={styles.titleDetail} />
         <TextInputComponent
           value={descriptionText}
           placeholder="here your comment and assessment of business..."
@@ -24,8 +27,12 @@ const Assessment: React.FC<AssessmentProps> = ({ descriptionText }) => {
         />
       </View>
       <View style={styles.containerAssessment}>
-        <Text>Assessment here</Text>
-        <StarRating />
+        {/* <LabelComponent text="Assessment here" style={styles.titleAssessment}/> */}
+        <StarRating
+          rating={rating}
+          editable={true}
+          onRatingChange={setRating}
+        />
       </View>
       <View style={styles.containerButtons}>
         <ButtonComponent style={styles.button} title="send" onPress={send} />
@@ -69,7 +76,7 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 300,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-start",
     padding: 16,
   },
   input: {
@@ -78,12 +85,25 @@ const styles = StyleSheet.create({
     height: "80%",
     padding: 15,
     textAlignVertical: "top",
-    borderWidth: 1,
+    borderWidth: 2,
+    borderRadius: 10,
   },
   containerAssessment: {
     width: "90%",
     justifyContent: "center",
     alignItems: "center",
+  },
+  titleDetail: {
+    color: "#000",
+    fontSize: 25,
+    fontFamily: "Roboto",
+    fontWeight: 800,
+  },
+  titleAssessment: {
+    color: "#000",
+    fontSize: 25,
+    fontFamily: "Roboto",
+    fontWeight: 800,
   },
 });
 export default Assessment;

@@ -2,10 +2,13 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import CardDetails from "../components/Organisms/CardDetails";
 import ButtonComponent from "../components/Atoms/Button";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 const Details = () => {
   const navigation = useNavigation<any>();
+
+  const route = useRoute();
+  const { card }:any = route.params;
 
   const viewLocation = () => {
     navigation.navigate("Location");
@@ -17,7 +20,7 @@ const Details = () => {
 
   return (
     <View style={styles.container}>
-      <CardDetails />
+      <CardDetails title={card.title} address={card.address} price={card.price} description={card.description} rating={card.assessment}/>
       <View style={styles.containerButtons}>
         <ButtonComponent
           style={styles.button}
@@ -44,12 +47,10 @@ const styles = StyleSheet.create({
     paddingTop: "0%",
     marginTop: "0%",
     flexDirection: "row",
-    // backgroundColor:'blue',
     height: 100,
     width: "90%",
     alignItems: "center",
     justifyContent: "center",
-    // flexWrap:'wrap-reverse',
   },
   button: {
     backgroundColor: "#E42F45",

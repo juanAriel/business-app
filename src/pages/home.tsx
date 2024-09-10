@@ -10,24 +10,27 @@ const cards = [
   {
     id: "1",
     title: "Business Home 1",
+    address:"sin address",
     price: 200,
-    assessment: 4.5,
+    assessment: 1,
     description:
       "Sal de la rutina y disfruta de una exclusiva escapada romántica junto al amor de tu vida en el hotel de las estrellas.",
   },
   {
     id: "2",
     title: "Business Home 2",
+    address:"sin address",
     price: 150,
-    assessment: 5.8,
+    assessment: 5,
     description:
       "Experimenta la mejor atención y el confort en nuestras instalaciones de lujo, diseñadas para hacerte sentir especial.",
   },
   {
     id: "3",
     title: "Business Home 3",
+    address:"sin address",
     price: 300,
-    assessment: 5.0,
+    assessment: 2,
     description:
       "Descubre nuestras ofertas exclusivas para parejas y crea recuerdos inolvidables en un entorno elegante y acogedor.",
   },
@@ -51,8 +54,8 @@ const Home = () => {
     card.title.toLowerCase().includes(searchText.toLowerCase())
   );
 
-  const viewDetails = () => {
-    navigation.navigate("Details");
+  const viewDetails = (card) => {
+    navigation.navigate("Details", {card});
   };
 
   const sortedFilteredCards = [...filteredCards].sort((a, b) => {
@@ -90,12 +93,12 @@ const Home = () => {
             key={card.id}
             title={card.title}
             description={card.description}
-            onPress={viewDetails}
+            onPress={()=>viewDetails(card)}
           />
         ))
       ) : sortedFilteredCards.length > 0 ? (
         sortedFilteredCards.map((card) => (
-          <Card key={card.id} title={card.title} onPress={viewDetails} />
+          <Card key={card.id} title={card.title} onPress={()=>viewDetails(card)} />
         ))
       ) : (
         <Text>No results found</Text>

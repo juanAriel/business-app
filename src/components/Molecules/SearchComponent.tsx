@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginLeft: 10,
-    marginRight: -10,
+    marginRight: -35,
   },
 });
 

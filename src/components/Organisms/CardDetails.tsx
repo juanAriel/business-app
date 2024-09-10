@@ -2,21 +2,29 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import LabelComponent from "../Atoms/Label";
 import StarRating from "./StartRating";
+import Card from "./Card";
 
-const rating = 2;
-const CardDetails = () => {
+ interface CardDetailsProps{
+  title:string,
+  address:string,
+  price:number,
+  description:string,
+  rating:number,
+ }
+
+const CardDetails:React.FC<CardDetailsProps> = ({title, address, price, description, rating}) => {
   return (
     <View style={styles.container}>
       <View style={styles.containerTitle}>
         <LabelComponent
-          text="Name Business"
+          text={`${title}`}
           style={styles.title}
         ></LabelComponent>
       </View>
       <View style={styles.containerInfo}>
-        <LabelComponent text="Address:"></LabelComponent>
-        <LabelComponent text="Price:"></LabelComponent>
-        <LabelComponent text="Description:"></LabelComponent>
+        <LabelComponent text={`Address: ${address}`}/ >
+        <LabelComponent text={`Price: ${price}`}></LabelComponent>
+        <LabelComponent text={`Description: ${description}`}></LabelComponent>
       </View>
       <View style={styles.containerAssent}>
         <StarRating rating={rating} />

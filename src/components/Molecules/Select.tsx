@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import LabelComponent from "../Atoms/Label";
 
 interface SelectProps {
   options: string[];
@@ -30,9 +31,10 @@ const Select: React.FC<SelectProps> = ({
         style={styles.button}
         onPress={() => setModalVisible(true)}
       >
-        <Text style={styles.buttonText}>
-          {selectedOption || "Select an option"}
-        </Text>
+        <LabelComponent
+          text={selectedOption || "Select an option"}
+          style={styles.buttonText}
+        />
       </TouchableOpacity>
 
       <Modal
@@ -46,13 +48,16 @@ const Select: React.FC<SelectProps> = ({
               data={options}
               keyExtractor={(item) => item}
               renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.option}
-                  onPress={() => handleSelect(item)}
-                >
-                  <Text style={styles.optionText}>{item}</Text>
-                </TouchableOpacity>
+                <View>
+                  <TouchableOpacity
+                    style={styles.option}
+                    onPress={() => handleSelect(item)}
+                  >
+                    <Text style={styles.optionText}>{item}</Text>
+                  </TouchableOpacity>
+                </View>
               )}
+              ItemSeparatorComponent={() => <View style={styles.separator} />} // Línea separadora entre los items
             />
           </View>
         </View>
@@ -64,13 +69,14 @@ const Select: React.FC<SelectProps> = ({
 const styles = StyleSheet.create({
   container: {
     margin: 10,
+    width: "90%",
   },
   button: {
     padding: 10,
     borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 4,
-    backgroundColor: "#fff",
+    borderColor: "#000",
+    borderRadius: 8,
+    backgroundColor: "rgba(234,66,89,0.6)",
     alignItems: "center",
   },
   buttonText: {
@@ -80,12 +86,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
+    backgroundColor: "rgba(234,66,89,0.4)",
   },
   modalContent: {
-    width: "80%",
-    backgroundColor: "#fff",
-    borderRadius: 4,
+    width: "70%",
+    backgroundColor: "#EA4259",
+    alignItems: "center",
+    borderWidth: 2,
+    borderColor: "#000",
+    borderRadius: 15,
     overflow: "hidden",
   },
   option: {
@@ -93,6 +102,12 @@ const styles = StyleSheet.create({
   },
   optionText: {
     fontSize: 16,
+  },
+  separator: {
+    height: 1,
+    width: 250,
+    backgroundColor: "#000",
+    marginVertical: 4,
   },
 });
 

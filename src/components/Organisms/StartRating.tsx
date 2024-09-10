@@ -1,9 +1,12 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import IconComponent from "../Atoms/Icon";
-// import Icon from 'react-native-vector-icons/FontAwesome';
 
-const StarRating = ({ rating, maxStars = 5 }) => {
+interface StarRatingProps {
+  rating?: number;
+}
+const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
+  const maxStars = 5;
   return (
     <View style={styles.container}>
       {[...Array(maxStars)].map((_, index) => (
@@ -23,8 +26,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     justifyContent: "center",
-    // backgroundColor:'blue',
-    // flexWrap:'wrap-reverse',
   },
 });
 

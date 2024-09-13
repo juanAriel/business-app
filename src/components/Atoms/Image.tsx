@@ -9,11 +9,12 @@ interface ImageComponentProps {
 const ImageComponent: React.FC<ImageComponentProps> = ({ source, style }) => {
   return <Image source={source} style={[styles.image, style]} />;
 };
+
 const styles = StyleSheet.create({
   image: {
-    width: 50,
-    height: 50,
-    resizeMode: "cover",
+    width: "100%",
+    height: "100%",
   },
 });
+
 export default ImageComponent;

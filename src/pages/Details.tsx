@@ -14,6 +14,10 @@ const Details = () => {
     navigation.navigate("Location");
   };
 
+  const viewGallery = () => {
+    navigation.navigate("Gallery");
+  };
+
   const viewSendAssent = () => {
     navigation.navigate("Assessment");
   };
@@ -24,8 +28,13 @@ const Details = () => {
       <View style={styles.containerButtons}>
         <ButtonComponent
           style={styles.button}
-          title="location"
+          title="Location"
           onPress={viewLocation}
+        ></ButtonComponent>
+        <ButtonComponent
+          style={styles.button}
+          title="Gallery"
+          onPress={viewGallery}
         ></ButtonComponent>
         <ButtonComponent
           style={styles.button}
@@ -56,7 +65,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E42F45",
     height: "50%",
     justifyContent: "center",
-    width: 150,
+    width: 110,
     margin: 5,
     borderWidth: 2,
     borderColor: "#000",

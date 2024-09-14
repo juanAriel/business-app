@@ -1,8 +1,7 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import LabelComponent from "../Atoms/Label";
 import StarRating from "./StartRating";
-import Card from "./Card";
 
  interface CardDetailsProps{
   title:string,
@@ -17,7 +16,7 @@ const CardDetails:React.FC<CardDetailsProps> = ({title, address, price, descript
     <View style={styles.container}>
       <View style={styles.containerTitle}>
         <LabelComponent
-          text={`${title}`}
+          text={title}
           style={styles.title}
         ></LabelComponent>
       </View>
@@ -46,22 +45,16 @@ const styles = StyleSheet.create({
   containerTitle: {
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor:'#fff',
     margin: 15,
     height: "10%",
   },
   containerInfo: {
-    // justifyContent:'center',
-    // alignItems:'center',
-    // backgroundColor:'#fff',
-
     marginLeft: 15,
     marginRight: 15,
     height: "65%",
   },
   containerAssent: {
     justifyContent: "center",
-    // backgroundColor:'#fff',
     alignItems: "center",
     height: "10%",
     margin: 15,

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import Carousel from "../Molecules/Carousel";
 
 interface CarouselViewProps {
@@ -7,17 +7,19 @@ interface CarouselViewProps {
 }
 const CarouselView: React.FC<CarouselViewProps> = ({ data }) => {
   return (
-    <ScrollView horizontal pagingEnabled style={styles.containerScrollView}>
-      {data.map((item, index) => (
-        <Carousel key={index} item={item.image} />
-      ))}
-    </ScrollView>
+    <View style={styles.container}>
+      <ScrollView horizontal pagingEnabled>
+        {data.map((item, index) => (
+          <Carousel key={index} item={item.image} />
+        ))}
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  containerScrollView: {
-    flex: 1,
+  container: {
+    height: "50%",
   },
 });
 

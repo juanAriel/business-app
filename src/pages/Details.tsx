@@ -15,7 +15,7 @@ const Details = () => {
   };
 
   const viewGallery = () => {
-    navigation.navigate("Gallery");
+    navigation.navigate("Gallery",{card});
   };
 
   const viewSendAssent = () => {

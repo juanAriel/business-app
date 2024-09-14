@@ -16,15 +16,12 @@ const Carousel: React.FC<CarouselProps> = ({ item }) => {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
     marginHorizontal: 21,
-    backgroundColor: "red",
-    height: "50%",
+    marginVertical: 10,
   },
   image: {
     width: 350,
-    height: 250,
+    height: 350,
     borderRadius: 10,
   },
 });

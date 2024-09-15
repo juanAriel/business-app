@@ -1,5 +1,11 @@
-import { StyleSheet, View, Text } from "react-native";
-import React, { useCallback, useState } from "react";
+import React, { useState, useCallback } from "react";
+import {
+  StyleSheet,
+  Text,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import SearchComponent from "../components/Molecules/SearchComponent";
 import CardPremium from "../components/Organisms/CardPremium";
 import Card from "../components/Organisms/Card";
@@ -10,7 +16,7 @@ const cards = [
   {
     id: "1",
     title: "Business Home 1",
-    address:"sin address",
+    address: "sin address",
     price: 200,
     assessment: 1,
     description:
@@ -19,7 +25,7 @@ const cards = [
   {
     id: "2",
     title: "Business Home 2",
-    address:"sin address",
+    address: "sin address",
     price: 150,
     assessment: 5,
     description:
@@ -28,7 +34,7 @@ const cards = [
   {
     id: "3",
     title: "Business Home 3",
-    address:"sin address",
+    address: "sin address",
     price: 300,
     assessment: 2,
     description:
@@ -55,7 +61,7 @@ const Home = () => {
   );
 
   const viewDetails = (card) => {
-    navigation.navigate("Details", {card});
+    navigation.navigate("Details", { card });
   };
 
   const sortedFilteredCards = [...filteredCards].sort((a, b) => {
@@ -72,38 +78,51 @@ const Home = () => {
   });
 
   return (
-    <View style={styles.container}>
-      <SearchComponent
-        searchText={searchText}
-        onSearchText={handleSearchTextChange}
-        onSearch={() => {}}
-      />
-
-      {searchText && (
-        <Select
-          options={["Name (A-Z)", "Price (High-Low)", "Assessment (High-Low)"]}
-          selectedOption={sortOption}
-          onSelect={handleSortOptionChange}
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === "android" ? "padding" : "height"}
+    >
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <SearchComponent
+          searchText={searchText}
+          onSearchText={handleSearchTextChange}
+          onSearch={() => {}}
         />
-      )}
 
-      {searchText === "" ? (
-        cards.map((card) => (
-          <CardPremium
-            key={card.id}
-            title={card.title}
-            description={card.description}
-            onPress={()=>viewDetails(card)}
+        {searchText && (
+          <Select
+            options={[
+              "Name (A-Z)",
+              "Price (High-Low)",
+              "Assessment (High-Low)",
+            ]}
+            selectedOption={sortOption}
+            onSelect={handleSortOptionChange}
           />
-        ))
-      ) : sortedFilteredCards.length > 0 ? (
-        sortedFilteredCards.map((card) => (
-          <Card key={card.id} title={card.title} onPress={()=>viewDetails(card)} />
-        ))
-      ) : (
-        <Text>No results found</Text>
-      )}
-    </View>
+        )}
+
+        {searchText === "" ? (
+          cards.map((card) => (
+            <CardPremium
+              key={card.id}
+              title={card.title}
+              description={card.description}
+              onPress={() => viewDetails(card)}
+            />
+          ))
+        ) : sortedFilteredCards.length > 0 ? (
+          sortedFilteredCards.map((card) => (
+            <Card
+              key={card.id}
+              title={card.title}
+              onPress={() => viewDetails(card)}
+            />
+          ))
+        ) : (
+          <Text style={styles.noResultsText}>No results found</Text>
+        )}
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -111,8 +130,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FCE6C5",
+    justifyContent: "center",
+  },
+  scrollViewContent: {
     alignItems: "center",
     justifyContent: "center",
+  },
+  noResultsText: {
+    marginTop: 20,
+    fontSize: 20,
+    color: "red",
   },
 });
 

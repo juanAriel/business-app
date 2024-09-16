@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import ButtonComponent from "../components/Atoms/Button";
 import TextInputComponent from "../components/Atoms/TextInput";
 import StarRating from "../components/Organisms/StartRating";
@@ -17,7 +17,7 @@ const Assessment: React.FC<AssessmentProps> = ({ descriptionText }) => {
     navigation.navigate("Home");
   };
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container}>
       <View style={styles.containerText}>
         <LabelComponent text="Details here" style={styles.titleDetail} />
         <TextInputComponent
@@ -37,7 +37,7 @@ const Assessment: React.FC<AssessmentProps> = ({ descriptionText }) => {
       <View style={styles.containerButtons}>
         <ButtonComponent style={styles.button} title="send" onPress={send} />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 const styles = StyleSheet.create({
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#E42F45",
-    height: "50%",
+    height: 50,
     justifyContent: "center",
     width: 150,
     margin: 5,

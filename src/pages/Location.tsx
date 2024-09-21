@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, Polyline } from "react-native-maps";
 import ButtonComponent from "../components/Atoms/Button";
 import { useNavigation } from "@react-navigation/native";
 import * as LocationExpo from "expo-location";
+import { fetchRoute } from "../../utils/Api";
+
+interface Point {
+  latitude: number;
+  longitude: number;
+}
 
 const Location = () => {
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState<Point | null>(null);
   const [loading, setLoading] = useState(true);
+  const [routeCoordinates, setRouteCoordinates] = useState<Point[]>([]);
   const navigation = useNavigation<any>();
 
   useEffect(() => {
@@ -24,6 +31,27 @@ const Location = () => {
     getLocation();
   }, []);
 
+  const targetLatitude = -17.3843499;
+  const targetLongitude = -66.26865;
+
+  useEffect(() => {
+    const fetchAndSetRoute = async () => {
+      if (location) {
+        console.log("asd");
+        const points = await fetchRoute(location, {
+          latitude: targetLatitude,
+          longitude: targetLongitude,
+        });
+        setRouteCoordinates(points);
+      }
+    };
+    fetchAndSetRoute();
+  }, [location]);
+
+  const Exit = () => {
+    navigation.navigate("Home");
+  };
+
   if (loading) {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
@@ -31,13 +59,6 @@ const Location = () => {
   if (!location) {
     return null;
   }
-  //todo replace the location of the business that was registered
-  const targetLatitude = -17.3843499;
-  const targetLongitude = -66.2686799;
-
-  const Exit = () => {
-    navigation.navigate("Home");
-  };
 
   return (
     <View style={styles.container}>
@@ -55,7 +76,15 @@ const Location = () => {
           coordinate={{ latitude: targetLatitude, longitude: targetLongitude }}
           title="Ubicación Específica"
         />
-        <Marker coordinate={location} title="Tu Ubicación" pinColor="blue" />
+        <Marker coordinate={location} title="Tu Ubicación" />
+
+        {routeCoordinates.length > 0 && (
+          <Polyline
+            coordinates={routeCoordinates}
+            strokeColor="red"
+            strokeWidth={4}
+          />
+        )}
       </MapView>
       <View style={styles.containerButtons}>
         <ButtonComponent style={styles.button} title="Exit" onPress={Exit} />
@@ -79,8 +108,6 @@ const styles = StyleSheet.create({
     borderColor: "#000",
   },
   containerButtons: {
-    paddingTop: "0%",
-    marginTop: "0%",
     flexDirection: "row",
     height: 100,
     width: "90%",
